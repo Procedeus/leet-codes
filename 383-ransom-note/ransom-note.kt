@@ -6,8 +6,7 @@ class Solution {
             arr[magazine[letra].toInt() - 97]++
         }
         for(letra in ransomNote.indices){
-            arr[ransomNote[letra].toInt() - 97]--
-            if(arr[ransomNote[letra].toInt() - 97] < 0) return false
+            if(--arr[ransomNote[letra].toInt() - 97] < 0) return false
         }
         return true
     }
