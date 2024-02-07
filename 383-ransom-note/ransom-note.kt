@@ -1,24 +1,14 @@
 class Solution {
     fun canConstruct(ransomNote: String, magazine: String): Boolean {
-        var magEdit: String = magazine
-        var i = 0
-        var j = 0
-        while(ransomNote.length > i){
-            while(ransomNote.length > i && magEdit.length > j){
-                if(ransomNote[i] == magEdit[j]){
-                    magEdit = magEdit.replaceFirst(magEdit[j].toString(), "")
-                    i++
-                    j = 0
-                }
-                else{
-                    j++
-                }
-            }
-            if(ransomNote.length == i){
-                return true
-            }
-            i++
+        if(ransomNote.length > magazine.length) return false
+        val arr = IntArray(26)
+        for(letra in magazine.indices){
+            arr[magazine[letra].toInt() - 97]++
         }
-        return false
+        for(letra in ransomNote.indices){
+            arr[ransomNote[letra].toInt() - 97]--
+            if(arr[ransomNote[letra].toInt() - 97] < 0) return false
+        }
+        return true
     }
 }
